@@ -2,6 +2,7 @@ import DeliverySection from "@/Feature/DeliverySection";
 import Hero from "@/Feature/Hero";
 import PopularDishes from "@/Feature/PopularDishes";
 import Reservation from "@/Feature/Reservation";
+import Subscribe from "@/Feature/Subscribe";
 import WhyChooseUs from "@/Feature/WhyChooseUs";
 
 export default function Home() {
@@ -16,6 +17,7 @@ export default function Home() {
         <DeliverySection />
       </div>
       <Reservation />
+      <Subscribe />
     </div>
   );
 }
