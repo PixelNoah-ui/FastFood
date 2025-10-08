@@ -56,8 +56,16 @@ export default function Header() {
             </SheetTrigger>
             <SheetContent side="left" className="bg-[#FFF1C1]">
               <SheetHeader>
-                <SheetTitle className="text-primary pb-3 text-2xl font-bold md:text-3xl">
-                  FAZ<span className="text-destructive">FOOD</span>{" "}
+                <SheetTitle>
+                  <Link href="/">
+                    <Image
+                      src="/logo.png"
+                      alt="FazFood"
+                      width={150}
+                      height={50}
+                      className="object-contain"
+                    />
+                  </Link>
                 </SheetTitle>
                 <div className="h-[2px] w-full bg-gray-300" />
               </SheetHeader>
@@ -128,7 +136,7 @@ export default function Header() {
           </Link>
         </div>
         <div className="flex items-center gap-4">
-          <ShoppingCart size={33} className="cursor-pointer" />
+          <ShoppingCart size={33} className="text-destructive cursor-pointer" />
           <DropdownMenu>
             <DropdownMenuTrigger>
               <div className="border-primary relative h-10 w-10 cursor-pointer overflow-hidden rounded-full border-2">
