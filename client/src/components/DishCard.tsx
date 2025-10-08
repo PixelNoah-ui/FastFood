@@ -1,4 +1,4 @@
-import { Plus, ShoppingBagIcon, ShoppingCart } from "lucide-react";
+import { Plus, ShoppingCart } from "lucide-react";
 import Image from "next/image";
 import { Button } from "./ui/button";
 
