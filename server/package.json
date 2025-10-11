@@ -4,7 +4,9 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "rimraf dist && npx tsc",
+    "start": "npm run build && node dist/server.js",
+    "dev": "npm run build && concurrently \"npx tsc -w\" \"nodemon dist/server.js\""
   },
   "keywords": [],
   "author": "",
@@ -17,11 +19,15 @@
     "dotenv": "^17.2.3",
     "express": "^5.1.0",
     "helmet": "^8.1.0",
+    "mongoose": "^8.19.1",
     "morgan": "^1.10.1"
   },
   "devDependencies": {
     "@types/express": "^5.0.3",
     "@types/node": "^24.7.1",
+    "concurrently": "^9.2.1",
+    "nodemon": "^3.1.10",
+    "rimraf": "^6.0.1",
     "typescript": "^5.9.3"
   }
 }
