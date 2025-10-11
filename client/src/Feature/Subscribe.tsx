@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { ArrowUpRightFromSquare, MoveRightIcon } from "lucide-react";
+import { MoveRightIcon } from "lucide-react";
 import Image from "next/image";
 
 export default function Subscribe() {

@@ -15,12 +15,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import {
-  ChevronDown,
-  ChevronDownIcon,
-  PhoneCall,
-  UtensilsCrossed,
-} from "lucide-react";
+import { ChevronDown, PhoneCall, UtensilsCrossed } from "lucide-react";
 import { Calendar } from "@/components/ui/calendar";
 import { format } from "date-fns";
 
@@ -62,7 +57,7 @@ export default function Reservation() {
           </div>
         </div>
 
-        <div className="basis-2/4 space-y-5 bg-[#0a7a3f]">
+        <div className="w-full basis-2/4 space-y-5 bg-[#0a7a3f]">
           <div className="flex flex-col items-center justify-center space-y-8 rounded-2xl bg-white/10 p-8 text-center backdrop-blur-lg">
             <div className="space-y-4">
               <div className="flex flex-col items-center text-white">
@@ -74,8 +69,8 @@ export default function Reservation() {
               <p className="font-bold text-white">Book Your Table</p>
             </div>
 
-            <div className="flex">
-              <div className="flex flex-wrap items-center gap-5">
+            <div className="flex flex-wrap space-y-4">
+              <div className="flex w-full flex-wrap items-center justify-center gap-5">
                 <Select defaultValue="1">
                   <SelectTrigger className="w-[180px] text-white">
                     <SelectValue placeholder="Select People" />
@@ -137,6 +132,12 @@ export default function Reservation() {
                   </SelectContent>
                 </Select>
               </div>
+            </div>
+            <div className="group">
+              <Button className="relative overflow-hidden rounded-none px-8 text-white transition-all duration-300">
+                <span className="relative z-10">Book</span>
+                <span className="from-primary to-destructive absolute inset-0 translate-x-[-100%] bg-gradient-to-r transition-transform duration-500 ease-out group-hover:translate-x-0"></span>
+              </Button>
             </div>
           </div>
         </div>
