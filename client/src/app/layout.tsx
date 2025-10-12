@@ -3,12 +3,7 @@ import { Oswald } from "next/font/google";
 import "./globals.css";
 import Header from "./Header";
 import Footer from "./Footer";
-
-// const tinos = Tinos({
-//   subsets: ["latin"],
-//   display: "swap",
-//   weight: ["400", "700"],
-// });
+import { Toaster } from "react-hot-toast";
 const oswald = Oswald({
   subsets: ["latin"],
   weight: ["400", "500", "700"],
@@ -35,6 +30,7 @@ export default function RootLayout({
         <Header />
         {children}
         <Footer />
+        <Toaster position="top-center" reverseOrder={false} />
       </body>
     </html>
   );
