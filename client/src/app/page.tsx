@@ -7,7 +7,7 @@ import WhyChooseUs from "@/Feature/WhyChooseUs";
 
 export default function Home() {
   return (
-    <div className="bg-chart-4/10">
+    <div className="bg-[#FBF8F3]">
       <Hero />
       <div className="mx-auto max-w-7xl space-y-12 px-8 py-10">
         <WhyChooseUs />
