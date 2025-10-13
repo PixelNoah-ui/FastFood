@@ -46,7 +46,7 @@ export default function PopularDishes() {
   if (!dishes?.length) return;
 
   return (
-    <div className="space-y-14">
+    <div className="space-y-14 py-10">
       <h1 className="text-center text-5xl font-bold md:text-6xl lg:text-7xl">
         Best selling dishes
       </h1>
@@ -64,9 +64,9 @@ export default function PopularDishes() {
             <div className="space-y-6 px-3 py-2">
               <div className="space-y-3">
                 <h1 className="text-2xl font-bold">{dish.name}</h1>
-                <h1 className="text-muted-foreground line-clamp-3">
+                <p className="text-muted-foreground line-clamp-3">
                   {dish.description}
-                </h1>
+                </p>
               </div>
               <div className="flex items-center justify-between gap-2">
                 <div className="flex items-center gap-2">

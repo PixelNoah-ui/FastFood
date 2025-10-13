@@ -7,13 +7,13 @@ import WhyChooseUs from "@/Feature/WhyChooseUs";
 
 export default function Home() {
   return (
-    <div className="bg-[#FBF8F3]">
+    <div className="space-y-20 bg-[#FBF8F3]">
       <Hero />
-      <div className="mx-auto max-w-7xl space-y-12 px-8 py-10">
+      <div className="mx-auto max-w-7xl space-y-20 px-8 py-10">
         <WhyChooseUs />
         <PopularDishes />
       </div>
-      <div className="bg-[#0a7a3f]">
+      <div className="h-full bg-[#0a7a3f]">
         <DeliverySection />
       </div>
       <Reservation />

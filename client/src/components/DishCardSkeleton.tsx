@@ -17,8 +17,8 @@ export default function DishCardSkeleton() {
               </div>
 
               <div className="flex items-center justify-between gap-2">
-                <Skeleton className="h-5 w-16" />
-                <Skeleton className="h-5 w-10" />
+                <Skeleton className="h-5 w-26" />
+                <Skeleton className="h-5 w-30" />
               </div>
 
               <div className="bg-muted h-[2px] w-full" />

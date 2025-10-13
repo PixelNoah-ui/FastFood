@@ -30,7 +30,7 @@ export default function Header() {
   const [open, setOpen] = useState(false);
   return (
     <div className="bg-chart-4/20 w-full">
-      <div className="mx-auto flex max-w-7xl items-center justify-between gap-6 px-8 py-3 lg:py-4">
+      <div className="mx-auto flex max-w-7xl items-center justify-between gap-6 px-8 py-2">
         <div className="flex items-center gap-5">
           <Sheet open={open} onOpenChange={setOpen}>
             <SheetTrigger>
@@ -40,16 +40,16 @@ export default function Header() {
                 onMouseLeave={() => setHovered(false)}
               >
                 <span
-                  className={`block h-[3px] w-8 bg-black ${hovered ? "bg-destructive" : ""} transition-all duration-300`}
+                  className={`block h-[2px] w-7 bg-black ${hovered ? "bg-destructive" : ""} transition-all duration-300`}
                 ></span>
                 <span
-                  className={`block h-[3px] bg-black transition-all duration-300 ${
-                    hovered ? "bg-destructive w-8" : "w-5"
+                  className={`block h-[2px] bg-black transition-all duration-300 ${
+                    hovered ? "bg-destructive w-7" : "w-4"
                   }`}
                 ></span>
                 <span
-                  className={`block h-[3px] bg-black transition-all duration-300 ${
-                    hovered ? "bg-destructive w-8" : "w-5"
+                  className={`block h-[2px] bg-black transition-all duration-300 ${
+                    hovered ? "bg-destructive w-7" : "w-4"
                   }`}
                 ></span>
               </div>
@@ -61,8 +61,8 @@ export default function Header() {
                     <Image
                       src="/logo.png"
                       alt="FazFood"
-                      width={150}
-                      height={50}
+                      width={100}
+                      height={100}
                       className="object-contain"
                     />
                   </Link>
@@ -117,7 +117,7 @@ export default function Header() {
                   My order
                 </Link>
                 <Link
-                  href="/"
+                  href="/contact"
                   className="hover:bg-muted hover:text-destructive px-2 py-2 font-bold transition-colors duration-300"
                 >
                   Contact us
@@ -129,17 +129,17 @@ export default function Header() {
             <Image
               src="/logo.png"
               alt="FazFood"
-              width={150}
-              height={50}
+              width={100}
+              height={100}
               className="object-contain"
             />
           </Link>
         </div>
         <div className="flex items-center gap-4">
-          <ShoppingCart size={33} className="text-destructive cursor-pointer" />
+          <ShoppingCart size={22} className="text-destructive cursor-pointer" />
           <DropdownMenu>
             <DropdownMenuTrigger>
-              <div className="border-primary relative h-10 w-10 cursor-pointer overflow-hidden rounded-full border-2">
+              <div className="border-primary relative h-8 w-8 cursor-pointer overflow-hidden rounded-full border-2">
                 <Image
                   src="/profile.png"
                   alt="profile"

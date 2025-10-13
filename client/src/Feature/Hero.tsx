@@ -47,7 +47,7 @@ export default function Hero() {
   const bgImage = slides[current].image || "/hero/default-hero.png";
 
   return (
-    <div className="relative h-[80vh] overflow-hidden bg-[#111]">
+    <div className="relative h-[90vh] overflow-hidden bg-[#111]">
       <AnimatePresence mode="wait">
         <motion.div
           key={slides[current].id}
