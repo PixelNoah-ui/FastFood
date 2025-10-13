@@ -71,8 +71,11 @@ export default function SearchFilter({
   }
 
   return (
-    <div className="mx-auto flex max-w-[1580px] flex-col items-start gap-8 px-5 py-10 md:flex-row lg:justify-center">
-      <aside className="top-10 flex h-fit w-full flex-col items-center justify-center space-y-5 lg:sticky lg:w-64 lg:items-start">
+    <div className="group mx-auto flex max-w-[1580px] flex-col items-start gap-8 px-5 py-10 md:flex-row lg:justify-center">
+      <aside
+        className="top-10 flex h-fit w-full flex-col items-center justify-center space-y-5 lg:sticky lg:w-64 lg:items-start"
+        data-pending={isPending ? "" : undefined}
+      >
         <CollectionFilter
           collections={collections}
           selectedCollections={optimisticFilter.collections}

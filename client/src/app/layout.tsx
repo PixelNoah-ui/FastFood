@@ -4,6 +4,7 @@ import "./globals.css";
 import Header from "./Header";
 import Footer from "./Footer";
 import { Toaster } from "react-hot-toast";
+import ReactQueryProvider from "./Provider";
 const oswald = Oswald({
   subsets: ["latin"],
   weight: ["400", "500", "700"],
@@ -27,10 +28,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${oswald.className} antialiased`}>
-        <Header />
-        {children}
-        <Footer />
-        <Toaster position="top-center" reverseOrder={false} />
+        <ReactQueryProvider>
+          <Header />
+          {children}
+          <Footer />
+          <Toaster position="top-center" reverseOrder={false} />
+        </ReactQueryProvider>
       </body>
     </html>
   );

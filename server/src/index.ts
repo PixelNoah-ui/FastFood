@@ -2,8 +2,7 @@ import express from "express";
 import cors from "cors";
 import helmet from "helmet";
 import morgan from "morgan";
-import dotenv from "dotenv";
-dotenv.config();
+import dishRouter from "./router/dishRouter.js";
 const app = express();
 
 app.use(morgan("dev"));
@@ -11,10 +10,7 @@ app.use(helmet());
 app.use(cors());
 app.use(express.json());
 
-const port = process.env.PORT || 3000;
-app.listen(port, () => {
-  console.log(`App is running on port  ${port}`);
-});
+app.use("/api/v1/dishes", dishRouter);
 
 app.all("/{*any}", (req, res, next) => {
   res.status(404).json({
