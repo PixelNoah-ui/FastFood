@@ -1,9 +1,16 @@
 import { Dishes } from "../model/dishesModel.js";
+import ApiFeature from "../utils/ApiFeature.js";
 import AppError from "../utils/AppError.js";
 import { catchAsync } from "../utils/catchAsync.js";
 
 export const getDishes = catchAsync(async (req, res, next) => {
-  const dishes = await Dishes.find();
+  const features = new ApiFeature(Dishes.find(), req.query)
+    .filter()
+    .sort()
+    .pagination();
+
+  const dishes = await features.query;
+
   if (!dishes.length) {
     return next(new AppError("There is no dishes available", 404));
   }
