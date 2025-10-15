@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
-import { Oswald } from "next/font/google";
+import { Tinos } from "next/font/google";
 import "./globals.css";
 import Header from "./Header";
 import Footer from "./Footer";
 import { Toaster } from "react-hot-toast";
 import ReactQueryProvider from "./Provider";
-const oswald = Oswald({
+const tinos = Tinos({
   subsets: ["latin"],
-  weight: ["400", "500", "700"],
+  weight: ["400", "700"],
   display: "swap",
 });
 
@@ -27,7 +27,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${oswald.className} antialiased`}>
+      <body className={`${tinos.className} antialiased`}>
         <ReactQueryProvider>
           <Header />
           {children}

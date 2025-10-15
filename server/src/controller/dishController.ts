@@ -8,9 +8,14 @@ export const getDishes = catchAsync(async (req, res, next) => {
     return next(new AppError("There is no dishes available", 404));
   }
 
+  const totalDishes = await Dishes.find().countDocuments();
+  const limit = 9;
+  const totalPage = Math.ceil(totalDishes / limit);
+
   res.status(200).json({
     status: "success",
     data: dishes,
+    totalPage,
   });
 });
 

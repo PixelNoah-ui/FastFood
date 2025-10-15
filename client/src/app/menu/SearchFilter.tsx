@@ -34,6 +34,7 @@ export default function SearchFilter({
     collections: searchParams.getAll("collections"),
     priceMin: searchParams.get("priceMin") || "",
     priceMax: searchParams.get("priceMax") || "",
+    sort: searchParams.get("sort") || "",
   });
 
   const [isPending, startTransition] = useTransition();
@@ -71,7 +72,7 @@ export default function SearchFilter({
   }
 
   return (
-    <div className="group mx-auto flex max-w-[1580px] flex-col items-start gap-8 px-5 py-10 md:flex-row lg:justify-center">
+    <div className="group mx-auto flex max-w-[1580px] flex-col items-start gap-12 px-5 py-10 md:flex-row lg:justify-center">
       <aside
         className="top-10 flex h-fit w-full flex-col items-center justify-center space-y-5 lg:sticky lg:w-64 lg:items-start"
         data-pending={isPending ? "" : undefined}
@@ -94,7 +95,13 @@ export default function SearchFilter({
 
       <div className="flex w-full basis-4/5 flex-col gap-6">
         <div className="flex items-center justify-center lg:justify-end">
-          <SortFilter sort={sorting} />
+          <SortFilter
+            sort={sorting}
+            selectedSort={optimisticFilter.sort}
+            updateSortFilter={(sort) => {
+              updateFilter({ sort: sort });
+            }}
+          />
         </div>
         {children}
       </div>
@@ -147,12 +154,17 @@ interface SortingType {
 
 interface SortFilterProps {
   sort: SortingType[];
+  selectedSort: string;
+  updateSortFilter: (sort: string) => void;
 }
 
-function SortFilter({ sort }: SortFilterProps) {
+function SortFilter({ sort, selectedSort, updateSortFilter }: SortFilterProps) {
   return (
     <div>
-      <Select value="">
+      <Select
+        value={selectedSort || "newest"}
+        onValueChange={(value) => updateSortFilter(value)}
+      >
         <SelectTrigger className="w-[180px]">
           <SelectValue placeholder="Sort by:" />
         </SelectTrigger>

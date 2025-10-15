@@ -77,7 +77,7 @@ export default function Header() {
                   Home
                 </Link>
                 <Link
-                  href="/"
+                  href="/menu"
                   className="hover:bg-muted hover:text-destructive px-2 py-2 font-bold transition-colors duration-300"
                 >
                   Menu
