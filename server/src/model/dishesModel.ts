@@ -6,7 +6,7 @@ export const dishesSchema = new mongoose.Schema(
       type: String,
       required: [true, "Dishes name is required"],
     },
-    descriptions: {
+    description: {
       type: String,
       required: [true, "Dishes descriptions id required"],
       minlength: [10, "Description must be at least 10 characters"],

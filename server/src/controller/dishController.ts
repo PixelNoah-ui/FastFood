@@ -3,6 +3,15 @@ import ApiFeature from "../utils/ApiFeature.js";
 import AppError from "../utils/AppError.js";
 import { catchAsync } from "../utils/catchAsync.js";
 
+export const createCourse = catchAsync(async (req, res, next) => {
+  const { name, price, description, category } = req.body;
+  const newDish = await Dishes.create({ name, price, description, category });
+  res.status(200).json({
+    status: "success",
+    data: newDish,
+  });
+});
+
 export const getDishes = catchAsync(async (req, res, next) => {
   const features = new ApiFeature(Dishes.find(), req.query)
     .filter()
