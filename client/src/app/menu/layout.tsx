@@ -1,18 +1,9 @@
+import getCollections from "@/api/getCollections";
 import SearchFilter from "./SearchFilter";
 
-export default function MenuLayout({
+export default async function MenuLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
-  const collections = [
-    "Burgers",
-    "Pizza",
-    "Chicken",
-    "Sandwiches",
-    "Fries & Sides",
-    "Drinks",
-    "Desserts",
-    "Salads",
-    "Snacks",
-  ];
+  const collections = await getCollections();
   return <SearchFilter collections={collections}>{children}</SearchFilter>;
 }

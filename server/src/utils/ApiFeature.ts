@@ -21,29 +21,24 @@ export default class ApiFeature<T extends Document> {
     const excludeQuery = ["page", "sort", "price_max", "price_min"];
     excludeQuery.forEach((key) => delete queryObj[key]);
 
+    if (queryObj.category) {
+      queryObj.category = Array.isArray(queryObj.category)
+        ? { $in: queryObj.category }
+        : { $in: [queryObj.category] };
+    }
+
     for (const key in queryObj) {
-      if (key === "category") {
-        if (Array.isArray(queryObj[key])) {
-          queryObj["category"] = { $in: queryObj[key] };
-        } else {
-          queryObj["category"] = queryObj[key];
-        }
-        delete queryObj[key];
-      } else if (Array.isArray(queryObj[key])) {
+      if (Array.isArray(queryObj[key])) {
         queryObj[key] = { $in: queryObj[key] };
       }
     }
 
     if (this.queryString.price_max || this.queryString.price_min) {
       const filterPrice: Record<string, number> = {};
-
-      if (this.queryString.price_max) {
-        filterPrice.$gte = Number(this.queryString.price_max);
-      }
-      if (this.queryString.price_min) {
-        filterPrice.$lte = Number(this.queryString.price_min);
-      }
-
+      if (this.queryString.price_max)
+        filterPrice.$lte = Number(this.queryString.price_max);
+      if (this.queryString.price_min)
+        filterPrice.$gte = Number(this.queryString.price_min);
       this.query = this.query.find({ price: filterPrice });
     }
 

@@ -32,8 +32,8 @@ export default function SearchFilter({
 
   const [optimisticFilter, setOptimisticFilter] = useOptimistic({
     collections: searchParams.getAll("collections"),
-    priceMin: searchParams.get("priceMin") || "",
-    priceMax: searchParams.get("priceMax") || "",
+    price_min: searchParams.get("price_min") || "",
+    price_max: searchParams.get("price_max") || "",
     sort: searchParams.get("sort") || "",
   });
 
@@ -85,10 +85,10 @@ export default function SearchFilter({
           }
         />
         <PriceFilter
-          minDefaultPrice={optimisticFilter.priceMin}
-          maxDefaultPrice={optimisticFilter.priceMax}
-          updateFilterPrice={(priceMin, priceMax) =>
-            updateFilter({ priceMin: priceMin, priceMax: priceMax })
+          minDefaultPrice={optimisticFilter.price_min}
+          maxDefaultPrice={optimisticFilter.price_max}
+          updateFilterPrice={(price_min, price_max) =>
+            updateFilter({ price_min: price_min, price_max: price_max })
           }
         />
       </aside>
