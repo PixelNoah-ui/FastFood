@@ -28,6 +28,7 @@ import { useState } from "react";
 export default function Header() {
   const [hovered, setHovered] = useState(false);
   const [open, setOpen] = useState(false);
+  const count = 3;
   return (
     <div className="bg-chart-4/20 w-full">
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-6 px-8 py-2">
@@ -136,7 +137,18 @@ export default function Header() {
           </Link>
         </div>
         <div className="flex items-center gap-4">
-          <ShoppingCart size={22} className="text-destructive cursor-pointer" />
+          <Link
+            href="/mycart"
+            className="relative inline-flex items-center justify-center"
+          >
+            <ShoppingCart className="h-6 w-6 text-gray-700 transition-colors hover:text-black" />
+
+            {count > 0 && (
+              <span className="absolute -top-1.5 -right-1.5 flex h-4 w-4 items-center justify-center rounded-full bg-red-500 text-[10px] font-medium text-white shadow-sm">
+                {count}
+              </span>
+            )}
+          </Link>
           <DropdownMenu>
             <DropdownMenuTrigger>
               <div className="border-primary relative h-8 w-8 cursor-pointer overflow-hidden rounded-full border-2">
