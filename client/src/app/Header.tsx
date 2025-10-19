@@ -20,15 +20,16 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
+import { useCartStore } from "@/store/useCartStore";
 import { LogOut, ShoppingCart } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 
 export default function Header() {
+  const totalItems = useCartStore((state) => state.getTotalItems());
   const [hovered, setHovered] = useState(false);
   const [open, setOpen] = useState(false);
-  const count = 3;
 
   const handleClose = () => setOpen(false);
 
@@ -159,9 +160,9 @@ export default function Header() {
             className="relative inline-flex items-center justify-center"
           >
             <ShoppingCart className="h-6 w-6 text-gray-700 transition-colors hover:text-black" />
-            {count > 0 && (
+            {totalItems > 0 && (
               <span className="absolute -top-1.5 -right-1.5 flex h-4 w-4 items-center justify-center rounded-full bg-red-500 text-[10px] font-medium text-white shadow-sm">
-                {count}
+                {totalItems}
               </span>
             )}
           </Link>
