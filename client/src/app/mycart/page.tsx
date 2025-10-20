@@ -1,13 +1,16 @@
 "use client";
 import { Button } from "@/components/ui/button";
-import { CarTaxiFront, Minus, Plus, ShoppingCart, Trash } from "lucide-react";
+import { Minus, Plus, ShoppingCart, Trash } from "lucide-react";
 import Image from "next/image";
 import { useCartStore } from "@/store/useCartStore";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 
+import { useVerifyStock } from "@/hooks/useVerfiyStock";
+
 export default function MyCartPage() {
+  const mutate = useVerifyStock();
   const { items: cart, getSubtotal } = useCartStore();
   const [loading, setLoading] = useState(true);
 
@@ -61,6 +64,9 @@ export default function MyCartPage() {
       </section>
     );
 
+  async function handleCheckout() {
+    mutate.mutate(cart);
+  }
   return (
     <section className="min-h-screen bg-[#FBF8F3] py-10">
       <div className="mx-auto max-w-6xl px-5">
@@ -97,8 +103,16 @@ export default function MyCartPage() {
               </div>
             </div>
 
-            <Button className="mt-4 w-full rounded-none px-4">
-              Proceed to Checkout
+            <Button
+              onClick={handleCheckout}
+              className="mt-4 flex w-full items-center justify-center rounded-none px-4"
+              disabled={mutate.isPending || cart.length === 0}
+            >
+              {mutate.isPending ? (
+                <span className="h-5 w-5 animate-spin rounded-full border-2 border-white border-t-transparent"></span>
+              ) : (
+                "Proceed to Checkout"
+              )}
             </Button>
           </div>
         </div>
@@ -114,6 +128,7 @@ interface CartItemProps {
     price: number;
     image?: string;
     quantity: number;
+    stock: number;
   };
 }
 
@@ -152,11 +167,15 @@ function CartItem({ item }: CartItemProps) {
             {item.quantity}
           </span>
           <button
+            disabled={item.quantity >= item.stock}
             className="rounded p-1 transition hover:bg-gray-100"
             onClick={() => updateQuantity(item.id, item.quantity + 1)}
           >
             <Plus className="h-4 w-4" />
           </button>
+          {item.quantity >= item.stock && (
+            <p className="ml-2 text-xs text-red-500">Max stock reached</p>
+          )}
         </div>
 
         <div className="flex items-center gap-3">

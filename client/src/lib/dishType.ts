@@ -6,4 +6,5 @@ export interface dishTypes {
   categry: string;
   rating: number;
   image: string;
+  stock: number;
 }

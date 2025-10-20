@@ -51,6 +51,7 @@ export async function getDishes({
     }
 
     const result: DishesResponse = await response.json();
+    console.log("Fetched Dishes:", result);
     return result;
   } catch (error) {
     console.error("Fetch error:", error);

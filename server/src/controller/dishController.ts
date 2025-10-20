@@ -59,3 +59,7 @@ export const getCollections = catchAsync(async (req, res, next) => {
     data: categories,
   });
 });
+
+export const verifyDishStock = catchAsync(async (req, res, next) => {
+  const { id, name } = req.body;
+});

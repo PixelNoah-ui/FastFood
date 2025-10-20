@@ -22,6 +22,11 @@ export const dishesSchema = new mongoose.Schema(
       min: [1, "Price must be at least 1"],
       max: [10000, "Price must be under 10000"],
     },
+    stock: {
+      type: Number,
+      required: [true, "Dishes stock is required"],
+      min: [0, "Stock cannot be less than 0"],
+    },
     rating: {
       type: Number,
       required: [true, "Dishes rating is required"],

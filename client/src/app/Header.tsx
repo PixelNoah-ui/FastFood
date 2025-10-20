@@ -24,11 +24,16 @@ import { useCartStore } from "@/store/useCartStore";
 import { LogOut, ShoppingCart } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function Header() {
   const totalItems = useCartStore((state) => state.getTotalItems());
   const [hovered, setHovered] = useState(false);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
   const [open, setOpen] = useState(false);
 
   const handleClose = () => setOpen(false);
@@ -160,9 +165,9 @@ export default function Header() {
             className="relative inline-flex items-center justify-center"
           >
             <ShoppingCart className="h-6 w-6 text-gray-700 transition-colors hover:text-black" />
-            {totalItems > 0 && (
+            {mounted && totalItems > 0 && (
               <span className="absolute -top-1.5 -right-1.5 flex h-4 w-4 items-center justify-center rounded-full bg-red-500 text-[10px] font-medium text-white shadow-sm">
-                {totalItems}
+                {totalItems > 9 ? "9+" : totalItems}
               </span>
             )}
           </Link>

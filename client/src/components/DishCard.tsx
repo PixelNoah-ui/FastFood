@@ -11,7 +11,25 @@ interface dishcCardProps {
 }
 
 export default function DishCard({ dish }: dishcCardProps) {
-  const addItem = useCartStore((state) => state.addItem);
+  const { addItem, items } = useCartStore((state) => state);
+
+  function handleAddToCart(dish: dishTypes) {
+    const existingItem = items.find((item) => item.id === dish._id);
+    if (existingItem && existingItem.quantity >= dish.stock) {
+      toast.error("Cannot add more items, stock limit reached.");
+      return;
+    }
+    addItem({
+      id: dish._id,
+      name: dish.name,
+      price: dish.price,
+      quantity: 1,
+      image: dish.image,
+      stock: dish.stock,
+    });
+    toast.success("Item added to cart!");
+  }
+
   return (
     <div className="group relative overflow-hidden rounded-2xl bg-white shadow-md transition-shadow duration-500 hover:shadow-xl">
       <div className="relative aspect-[16/12] w-full overflow-hidden">
@@ -47,16 +65,7 @@ export default function DishCard({ dish }: dishcCardProps) {
         <div className="pt-3">
           <Button
             className="flex items-center gap-2 px-6"
-            onClick={() => {
-              addItem({
-                id: dish._id,
-                name: dish.name,
-                price: dish.price,
-                image: dish.image,
-                quantity: 1,
-              });
-              toast.success("cart added successfully");
-            }}
+            onClick={() => handleAddToCart(dish)}
           >
             <ShoppingCart className="h-5 w-5" />
             <span>Add to Cart</span>
