@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 
 import { useVerifyStock } from "@/hooks/useVerfiyStock";
+import DeleteDealogCard from "@/components/DeleteDealogCard";
 
 export default function MyCartPage() {
   const mutate = useVerifyStock();
@@ -133,7 +134,7 @@ interface CartItemProps {
 }
 
 function CartItem({ item }: CartItemProps) {
-  const { updateQuantity, removeItem } = useCartStore();
+  const { updateQuantity } = useCartStore();
 
   return (
     <li className="flex flex-col gap-4 py-4 sm:flex-row sm:items-center sm:justify-between">
@@ -182,12 +183,7 @@ function CartItem({ item }: CartItemProps) {
           <span className="min-w-[70px] text-right font-semibold text-gray-800">
             {(item.price * item.quantity).toFixed(2)} ETB
           </span>
-          <button
-            className="rounded p-1 text-gray-500 transition hover:text-red-500"
-            onClick={() => removeItem(item.id)}
-          >
-            <Trash className="h-5 w-5" />
-          </button>
+          <DeleteDealogCard name={item.name} id={item.id} />
         </div>
       </div>
     </li>

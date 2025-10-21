@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { signUpButton } from "@/lib/UserAuthButton";
 import Image from "next/image";
 
 export default function SignupPage() {
@@ -17,9 +18,10 @@ export default function SignupPage() {
             height={100}
             className="mx-auto mb-4"
           />
-          <form className="space-y-4">
+          <form className="space-y-4" action={signUpButton}>
             <div>
               <Button
+                type="submit"
                 asChild
                 className="flex w-full items-center justify-center gap-2 border border-gray-300 bg-white text-black hover:bg-gray-50"
               >

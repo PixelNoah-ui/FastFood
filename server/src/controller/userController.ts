@@ -1,4 +1,5 @@
 import { User } from "../model/userModel.js";
+import AppError from "../utils/AppError.js";
 import { catchAsync } from "../utils/catchAsync.js";
 
 export const signUp = catchAsync(async (req, res, next) => {
@@ -9,5 +10,15 @@ export const signUp = catchAsync(async (req, res, next) => {
   res.status(200).json({
     status: "success",
     message: "Account created successfully",
+  });
+});
+
+export const getUser = catchAsync(async (req, res, next) => {
+  const { email } = req.params;
+  const user = await User.findOne({ email });
+
+  res.status(200).json({
+    status: "success",
+    data: user,
   });
 });
