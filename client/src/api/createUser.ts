@@ -12,13 +12,16 @@ interface responseData {
   createdDate: string;
 }
 export async function createUser(userData: CreateUserParams) {
-  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/users`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/users/signup`,
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(userData),
     },
-    body: JSON.stringify(userData),
-  });
+  );
 
   if (!response.ok) {
     throw new Error("Failed to create user");

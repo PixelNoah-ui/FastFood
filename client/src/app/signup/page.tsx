@@ -22,19 +22,16 @@ export default function SignupPage() {
             <div>
               <Button
                 type="submit"
-                asChild
-                className="flex w-full items-center justify-center gap-2 border border-gray-300 bg-white text-black hover:bg-gray-50"
+                className="flex w-full cursor-pointer items-center justify-center gap-2 border border-gray-300 bg-white text-black hover:bg-gray-50"
               >
-                <div>
-                  <Image
-                    src="/google.png"
-                    alt="Google Icon"
-                    width={20}
-                    height={20}
-                    className="inline-block"
-                  />
-                  <span>Sign up with Google</span>
-                </div>
+                <Image
+                  src="/google.png"
+                  alt="Google Icon"
+                  width={20}
+                  height={20}
+                  className="inline-block"
+                />
+                <span>Sign up with Google</span>
               </Button>
             </div>
             <div className="my-4 text-center text-white">or</div>

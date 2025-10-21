@@ -1,4 +1,3 @@
-// 📁 src/hooks/useVerifyStock.ts
 import { verifyStock } from "@/api/verifyStock";
 import { CartItem } from "@/store/useCartStore";
 import { useMutation } from "@tanstack/react-query";
@@ -26,7 +25,7 @@ export function useVerifyStock() {
 
     onError: (error) => {
       console.error("Stock verification failed:", error);
-      toast.error("Something went wrong while verifying stock.");
+      toast.error("Something went wrong ,please try again.");
     },
   });
 

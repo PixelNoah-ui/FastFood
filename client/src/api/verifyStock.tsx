@@ -18,7 +18,7 @@ export async function verifyStock(
   cartItems: CartItem[],
 ): Promise<VerifyStockResponse> {
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_API}/checkout/verify-stock`,
+    `${process.env.NEXT_PUBLIC_API_URL}/checkout/verify-stock`,
     {
       method: "POST",
       headers: { "Content-Type": "application/json" },

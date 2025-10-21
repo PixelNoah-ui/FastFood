@@ -1,5 +1,5 @@
 export default async function getCollections() {
-  const url = `${process.env.NEXT_PUBLIC_API}/dishes/collections`;
+  const url = `${process.env.NEXT_PUBLIC_API_URL}/dishes/collections`;
   const response = await fetch(url);
 
   if (!response.ok) {

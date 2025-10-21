@@ -2,7 +2,9 @@ import { dishTypes } from "@/lib/dishType";
 import toast from "react-hot-toast";
 
 export const getPopularDishes = async () => {
-  const response = await fetch(`${process.env.NEXT_PUBLIC_API}/dishes/popular`);
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/dishes/popular`,
+  );
   if (!response.ok) {
     const errorData = await response.json();
     toast.error("Something went wrong");

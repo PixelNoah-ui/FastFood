@@ -22,6 +22,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         }
         const existingUser = await getUser(user?.email);
         if (!existingUser) {
+          console.log("called");
           await createUser({
             name: user.name!,
             avatar: user.image!,

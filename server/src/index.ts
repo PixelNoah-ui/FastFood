@@ -9,11 +9,15 @@ const app = express();
 
 app.use(morgan("dev"));
 app.use(helmet());
-app.use(cors());
+app.use(
+  cors({
+    origin: "*",
+  })
+);
 app.use(express.json());
 
 app.use("/api/v1/dishes", dishRouter);
-app.use("/api/v1/user", userRouter);
+app.use("/api/v1/users", userRouter);
 app.use("/api/v1/checkout", checkoutRouter);
 
 app.all("/{*any}", (req, res, next) => {

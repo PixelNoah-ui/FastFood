@@ -36,7 +36,7 @@ export async function getDishes({
     if (price_min) params.append("price_min", price_min);
 
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_API}/dishes?${params.toString()}`,
+      `${process.env.NEXT_PUBLIC_API_URL}/dishes?${params.toString()}`,
       {
         method: "GET",
         headers: { "Content-Type": "application/json" },
