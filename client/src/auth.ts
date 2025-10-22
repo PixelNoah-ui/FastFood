@@ -1,7 +1,7 @@
 import NextAuth from "next-auth";
 import Google from "next-auth/providers/google";
-import { getUser } from "./api/getUser";
-import { createUser } from "./api/createUser";
+import { getUser } from "./app/api/getUser";
+import { createUser } from "./app/api/createUser";
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
   providers: [

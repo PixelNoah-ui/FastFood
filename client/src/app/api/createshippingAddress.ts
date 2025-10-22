@@ -1,7 +1,7 @@
 export interface shippingAddressType {
   fullName: string;
   email?: string;
-  phoneNumber: number;
+  phoneNumber: string;
   address: string;
   delveryInstructions?: string;
 }
@@ -9,7 +9,7 @@ interface responseData {
   _id: string;
   fullName: string;
   email?: string;
-  phoneNumber: number;
+  phoneNumber: string;
   address: string;
   delveryInstructions?: string;
 }
@@ -17,7 +17,7 @@ export const createUSerShippingAddress = async (
   userData: shippingAddressType,
 ) => {
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/users/address`,
+    `${process.env.NEXT_PUBLIC_API_URL}/users/address/}`,
     {
       method: "POST",
       headers: {

@@ -1,12 +1,12 @@
 import {
   createUSerShippingAddress,
   shippingAddressType,
-} from "@/api/createshippingAddress";
+} from "@/app/api/createshippingAddress";
 import { useMutation } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 
 export function useCreateShippingAddress() {
-  const { data: createAddress, isPending } = useMutation({
+  const mutate = useMutation({
     mutationFn: (userData: shippingAddressType) =>
       createUSerShippingAddress(userData),
     onSuccess: () => {
@@ -17,5 +17,5 @@ export function useCreateShippingAddress() {
     },
   });
 
-  return { createAddress, isPending };
+  return { createAddress: mutate.mutateAsync, isPending: mutate.isPending };
 }

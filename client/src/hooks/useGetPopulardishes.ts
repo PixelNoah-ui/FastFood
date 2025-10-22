@@ -1,4 +1,4 @@
-import { getPopularDishes } from "@/api/getPopularDishes";
+import { getPopularDishes } from "@/app/api/getPopularDishes";
 import { useQuery } from "@tanstack/react-query";
 
 export const useGetPopulardishes = () => {

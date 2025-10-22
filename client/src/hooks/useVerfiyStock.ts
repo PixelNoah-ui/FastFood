@@ -1,4 +1,4 @@
-import { verifyStock } from "@/api/verifyStock";
+import { verifyStock } from "@/app/api/verifyStock";
 import { CartItem } from "@/store/useCartStore";
 import { useMutation } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
