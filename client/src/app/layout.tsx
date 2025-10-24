@@ -5,6 +5,7 @@ import Header from "./Header";
 import Footer from "./Footer";
 import { Toaster } from "react-hot-toast";
 import ReactQueryProvider from "./Provider";
+import { SessionProvider } from "next-auth/react";
 const tinos = Tinos({
   subsets: ["latin"],
   weight: ["400", "700"],
@@ -30,7 +31,7 @@ export default function RootLayout({
       <body className={`${tinos.className} antialiased`}>
         <ReactQueryProvider>
           <Header />
-          {children}
+          <SessionProvider>{children}</SessionProvider>
           <Footer />
           <Toaster position="top-center" reverseOrder={false} />
         </ReactQueryProvider>

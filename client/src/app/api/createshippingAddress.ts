@@ -15,9 +15,10 @@ interface responseData {
 }
 export const createUSerShippingAddress = async (
   userData: shippingAddressType,
+  userId: string,
 ) => {
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/users/address/}`,
+    `${process.env.NEXT_PUBLIC_API_URL}/users/address/${userId}`,
     {
       method: "POST",
       headers: {

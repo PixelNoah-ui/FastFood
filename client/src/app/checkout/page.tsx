@@ -5,12 +5,15 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { Textarea } from "@/components/ui/textarea";
 import { useCreateShippingAddress } from "@/hooks/useCreateShippingAddress";
 import { useCartStore } from "@/store/useCartStore";
+import { useSession } from "next-auth/react";
 import Image from "next/image";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { chapaPayment } from "../api/chapa";
 
 export default function CheckoutPage() {
   const { createAddress } = useCreateShippingAddress();
+  const { data: session } = useSession();
   const { items, getSubtotal } = useCartStore((state) => state);
 
   type FormValues = {
@@ -40,14 +43,28 @@ export default function CheckoutPage() {
 
   const onSubmit = async (data: FormValues) => {
     if (!data) return;
+    if (!session?.user.id) return;
     try {
-      await createAddress(data);
+      await createAddress({ userData: data, userId: session?.user.id });
       setIsAddressSaved(true);
       reset();
     } catch (err) {
       console.error(err);
     }
   };
+
+  function handlePaymentClick() {
+    if (!session?.user?.id) {
+      console.error("User not logged in");
+      return;
+    }
+
+    if (items.length === 0) {
+      console.error("Cart is empty");
+      return;
+    }
+    chapaPayment({ cartItems: items, userId: session?.user.id });
+  }
   return (
     <div className="mx-auto flex h-fit max-w-7xl items-center justify-center bg-[#fbf8f3d4] px-5 py-10">
       <div className="flex w-full flex-col gap-8 border bg-white px-5 pt-8 shadow-lg lg:flex-row lg:gap-10">
@@ -161,7 +178,7 @@ export default function CheckoutPage() {
           <div>
             <h3 className="font-semibold">Order Summary</h3>
             <div className="flex items-center justify-between gap-2">
-              <span>Order Total</span> <span>{getSubtotal()} ETB</span>
+              <span>Order Total</span> <span>{getSubtotal() || 0} ETB</span>
             </div>
             <div className="flex items-center justify-between gap-2">
               <span>Delivery Charge</span> <span>Free</span>
@@ -204,6 +221,7 @@ export default function CheckoutPage() {
             </div>
             <Button
               disabled={!isAddressSaved}
+              onClick={handlePaymentClick}
               className="w-full cursor-pointer rounded-none bg-green-600 text-white hover:bg-green-700"
             >
               Place Order

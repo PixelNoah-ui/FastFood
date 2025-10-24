@@ -4,11 +4,14 @@ import {
 } from "@/app/api/createshippingAddress";
 import { useMutation } from "@tanstack/react-query";
 import toast from "react-hot-toast";
-
+interface useCreateShippingAddressProps {
+  userData: shippingAddressType;
+  userId: string;
+}
 export function useCreateShippingAddress() {
   const mutate = useMutation({
-    mutationFn: (userData: shippingAddressType) =>
-      createUSerShippingAddress(userData),
+    mutationFn: ({ userData, userId }: useCreateShippingAddressProps) =>
+      createUSerShippingAddress(userData, userId),
     onSuccess: () => {
       toast.success("Address saved successfully");
     },

@@ -1,5 +1,6 @@
 import { ShippingAddress } from "../model/shippingModel.js";
 import { User } from "../model/userModel.js";
+import AppError from "../utils/AppError.js";
 import { catchAsync } from "../utils/catchAsync.js";
 
 export const signUp = catchAsync(async (req, res, next) => {
@@ -16,7 +17,6 @@ export const signUp = catchAsync(async (req, res, next) => {
 export const getUser = catchAsync(async (req, res, next) => {
   const { email } = req.params;
   const user = await User.findOne({ email });
-  console.log("Fetched user:", user);
 
   res.status(200).json({
     status: "success",
@@ -26,15 +26,27 @@ export const getUser = catchAsync(async (req, res, next) => {
 
 export const createUSerShippingAddress = catchAsync(async (req, res, next) => {
   const { userId } = req.params;
+  const user = await User.findById(userId);
+  if (!user) {
+    return next(new AppError("User not found", 404));
+  }
+
+  const isShippingAddressExist = await ShippingAddress.findOne({
+    user: user._id,
+  });
+
+  if (isShippingAddressExist) {
+  }
   const { fullName, phoneNumber, email, address, delveryInstructions } =
     req.body;
+
   const shippingAddress = await ShippingAddress.create({
     fullName,
     email,
     phoneNumber,
     address,
     delveryInstructions,
-    user: userId,
+    user: user._id,
   });
   res.status(200).json({
     status: "success",
