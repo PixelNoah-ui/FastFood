@@ -10,7 +10,7 @@ const router = express.Router();
 
 router.post("/verify-stock", verifyStockBeforeCheckout);
 router.post("/shipping-address", createShippingAddress);
-router.post("/payments/initialize", initPayment);
-router.post("/chapa-callback", chapaCallBack);
+router.post("/init-payment", initPayment);
+router.get("/chapa-callback", chapaCallBack);
 
 export default router;

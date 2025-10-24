@@ -1,10 +1,7 @@
 "use client";
 import DishCard from "@/components/DishCard";
-import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useGetPopulardishes } from "@/hooks/useGetPopulardishes";
-import { Heart, Plus, ShoppingCart } from "lucide-react";
-import Image from "next/image";
 
 export default function PopularDishes() {
   const { dishes, isPending } = useGetPopulardishes();
@@ -12,9 +9,9 @@ export default function PopularDishes() {
   if (isPending) {
     return (
       <div className="mx-auto max-w-7xl">
-        <div className="flex grid-cols-3 flex-col items-center gap-6 sm:grid md:grid-cols-2 lg:grid-cols-3 lg:gap-8 xl:grid-cols-4">
+        <div className="flex w-full grid-cols-3 flex-col items-center gap-6 sm:grid md:grid-cols-2 lg:grid-cols-3 lg:gap-8 xl:grid-cols-4">
           {Array.from({ length: 4 }).map((_, i) => (
-            <div key={i} className="space-y-6 bg-white">
+            <div key={i} className="w-full space-y-6 bg-white">
               <div className="relative aspect-[16/12] w-full">
                 <Skeleton className="h-full w-full rounded-none" />
               </div>

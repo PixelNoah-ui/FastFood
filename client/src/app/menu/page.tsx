@@ -1,9 +1,9 @@
-import { getDishes } from "@/api/getDishes";
 import NoDishesFound from "@/components/NoDishesFound";
 import { Suspense } from "react";
 import DishCard from "@/components/DishCard";
 import DishCardSkeleton from "@/components/DishCardSkeleton";
 import { PaginationBar } from "@/components/PaginationBar";
+import { getDishes } from "../api/getDishes";
 
 interface pageProps {
   searchParams: Promise<{

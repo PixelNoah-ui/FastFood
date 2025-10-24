@@ -1,4 +1,4 @@
-import getCollections from "@/api/getCollections";
+import getCollections from "../api/getCollections";
 import SearchFilter from "./SearchFilter";
 
 export default async function MenuLayout({

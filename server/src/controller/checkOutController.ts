@@ -25,7 +25,6 @@ const CHAPA_SECRET = process.env.CHAPA_SECRET_KEY;
 
 export const verifyStockBeforeCheckout = catchAsync(async (req, res, next) => {
   const { cartItems } = req.body;
-  console.log(cartItems);
 
   if (!cartItems || cartItems.length === 0) {
     return res.status(400).json({
@@ -105,7 +104,6 @@ export const createShippingAddress = catchAsync(async (req, res, next) => {
 });
 
 export const initPayment = catchAsync(async (req, res, next) => {
-  console.log(CHAPA_SECRET);
   const { cartItems, userId } = req.body;
 
   const user = await User.findById(userId);
@@ -157,7 +155,6 @@ export const initPayment = catchAsync(async (req, res, next) => {
     },
     body: JSON.stringify(body),
   });
-  console.log("response", resp);
 
   if (!resp.ok) {
     const text = await resp.text();
@@ -173,7 +170,7 @@ export const initPayment = catchAsync(async (req, res, next) => {
 });
 
 export const chapaCallBack = catchAsync(async (req, res, next) => {
-  const { trx_ref } = req.params;
+  const { trx_ref } = req.query;
 
   const verifyResp = await axios.get(`${CHAPA_VERIFY}/${trx_ref}`, {
     headers: { Authorization: `Bearer ${CHAPA_SECRET}` },
