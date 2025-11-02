@@ -1,6 +1,6 @@
 "use client";
 import { Button } from "@/components/ui/button";
-import { Minus, Plus, ShoppingCart, Trash } from "lucide-react";
+import { Minus, Plus, ShoppingCart } from "lucide-react";
 import Image from "next/image";
 import { useCartStore } from "@/store/useCartStore";
 import { Skeleton } from "@/components/ui/skeleton";

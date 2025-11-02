@@ -52,7 +52,6 @@ export default function SearchFilter({
   function updateFilter(updates: Partial<typeof optimisticFilter>) {
     const newState = { ...optimisticFilter, ...updates };
     const newSearchParams = new URLSearchParams(searchParams);
-    console.log(newState);
 
     Object.entries(newState).forEach(([key, value]) => {
       newSearchParams.delete(key);
